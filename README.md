@@ -45,6 +45,9 @@ tools/dock.py deploy /path/to/pro-fm-78/build/profm78.dock
 
 Edits to a program last until you pick another program.
 
+A printable cheat sheet with every page's controls is in [docs/cheatsheet.html](docs/cheatsheet.html). Download it
+and open it in a browser.
+
 ## Build
 
 This repository holds the module (`profm78/`). The firmware around it is fm1-dock's. You need:

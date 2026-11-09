@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PRO-FM-78 Cheat Sheet</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a black synth panel between walnut end-cheeks; sections are panel strips with cream silk-screen legends. */
+:root {
+  --panel: #141312;
+  --panel-2: #1d1b19;
+  --rule: #3a3530;
+  --legend: #ece4d0;
+  --muted: #a39a8c;
+  --led: #ff2818;
+  --edited: #ff9a2e;
+  --wood-a: #5a3418;
+  --wood-b: #3b1f0d;
+  --display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --body: "IBM Plex Sans", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--wood-b);
+  background-image:
+    repeating-linear-gradient(92deg, transparent 0 7px, rgba(0,0,0,.18) 7px 9px, transparent 9px 23px),
+    linear-gradient(180deg, var(--wood-a), var(--wood-b));
+  color: var(--legend);
+  font: 15px/1.5 var(--body);
+}
+.case {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding-block: 28px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.panel {
+  background: var(--panel);
+  border: 1px solid #000;
+  border-radius: 3px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.05);
+  padding: 28px clamp(16px, 4vw, 40px) 36px;
+  display: grid;
+  gap: 36px;
+}
+header { display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: end; justify-content: space-between; border-bottom: 2px solid var(--legend); padding-bottom: 14px; }
+h1 { font: 700 clamp(40px, 7vw, 64px)/0.9 var(--display); letter-spacing: .04em; margin: 0; text-wrap: balance; }
+h1 small { display: block; font-size: 15px; letter-spacing: .22em; color: var(--muted); font-weight: 600; margin-top: 8px; }
+.leds { display: flex; gap: 6px; font: 500 34px/1 var(--mono); color: var(--led); background: #0a0505; border: 1px solid #000; padding: 8px 12px; border-radius: 2px; text-shadow: 0 0 8px rgba(255,40,24,.6); }
+h2 { font: 700 22px/1 var(--display); letter-spacing: .16em; text-transform: uppercase; margin: 0 0 14px; display: flex; align-items: center; gap: 12px; text-wrap: balance; }
+h2::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+h3 { font: 600 17px/1.1 var(--display); letter-spacing: .12em; text-transform: uppercase; margin: 0 0 8px; color: var(--legend); }
+p { margin: 0; max-width: 68ch; }
+.muted { color: var(--muted); }
+.lead { color: var(--muted); max-width: 70ch; }
+.k { font: 600 13px/1 var(--display); letter-spacing: .12em; text-transform: uppercase; border: 1px solid var(--legend); border-radius: 2px; padding: 3px 6px 2px; white-space: nowrap; display: inline-block; }
+.v { font-family: var(--mono); font-size: 13px; color: var(--legend); }
+.o { color: var(--edited); }
+
+/* panel map */
+.map { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 28px; align-items: start; }
+.screen { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
+.screen figure { margin: 0; }
+.screen img { width: 100%; image-rendering: pixelated; border: 6px solid #000; border-radius: 3px; display: block; }
+.screen figcaption { font: 600 12px/1.3 var(--display); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+dl.ctl { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 10px 16px; align-items: baseline; }
+dl.ctl dd { margin: 0; }
+
+/* pages */
+.pages { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; min-width: 720px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; vertical-align: top; padding: 9px 10px; border-bottom: 1px solid var(--rule); }
+thead th { font: 600 13px/1 var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--legend); }
+tbody th { font: 700 15px/1.1 var(--display); letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; }
+td b { display: block; font: 600 14px/1.2 var(--display); letter-spacing: .1em; text-transform: uppercase; }
+td span { font: 400 12.5px/1.35 var(--mono); color: var(--muted); }
+tr.btn-start td, tr.btn-start th { border-top: 2px solid var(--rule); }
+.home-row { background: var(--panel-2); }
+
+/* two-up */
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 28px; }
+.types { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 14px; list-style: none; padding: 0; }
+.types li { font: 600 14px/1 var(--display); letter-spacing: .1em; border: 1px solid var(--rule); background: var(--panel-2); padding: 6px 8px 5px; border-radius: 2px; display: flex; gap: 6px; }
+.types li em { font: 400 12px/1 var(--mono); color: var(--muted); font-style: normal; align-self: center; }
+.types li.first { border-color: var(--led); }
+ul.plain { margin: 0; padding-left: 18px; display: grid; gap: 6px; max-width: 68ch; }
+.chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+.chips span { font: 400 12.5px/1 var(--mono); border: 1px solid var(--rule); padding: 4px 6px; border-radius: 2px; }
+.midi { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 8px 16px; margin: 0; }
+.midi dt { font: 500 13px/1.5 var(--mono); color: var(--led); }
+.midi dd { margin: 0; }
+.note { border-left: 3px solid var(--edited); padding: 4px 0 4px 14px; }
+
+@media (max-width: 760px) {
+  .map { grid-template-columns: 1fr; }
+}
+@media (max-width: 420px) {
+  dl.ctl, .midi { grid-template-columns: 1fr; gap: 2px 0; }
+  dl.ctl dd, .midi dd { margin-bottom: 8px; }
+}
+</style>
+
+<div class="case">
+<div class="panel">
+
+<header>
+  <h1>PRO-FM-78<small>VINTAGE POLYSYNTH FOR THE FM-1 · CONTROLS &amp; FUNCTIONS</small></h1>
+  <div class="leds" aria-label="Program display reads group 5, bank 1, program 1">5 1 1</div>
+</header>
+
+<section>
+  <h2>The panel</h2>
+  <div class="map">
+    <div class="screen">
+      <figure><img alt="PRO-FM-78 home screen: program LEDs, type, program name and the four home controls" src="data:image/png;base64,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"><figcaption>Home screen</figcaption></figure>
+      <figure><img alt="PRO-FM-78 loop recorder page, the top line reading PLAY 1.1" src="data:image/png;base64,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"><figcaption>SEQ · loop recorder</figcaption></figure>
+      <figure><img alt="PRO-FM-78 with REC held: HOLD TO CLEAR in red over a filling red bar" src="data:image/png;base64,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"><figcaption>REC held · clearing the loop</figcaption></figure>
+    </div>
+    <dl class="ctl">
+      <dt><span class="k">Algorithm</span></dt>
+      <dd>Picks the <b>type</b>: 1978, Bass, Lead, Pad and so on. It jumps to the program you last played in that type.</dd>
+      <dt><span class="k">Presets</span> <span class="k">Select</span></dt>
+      <dd>Steps through the programs <b>within the type</b>. Both wrap around. The screen shows "3 OF 21".</dd>
+      <dt><span class="k">Knob 1–4</span></dt>
+      <dd>Set the four controls on the current page, left to right. Turn quickly to move four steps per click.</dd>
+      <dt><span class="k">FX</span> <span class="k">SEL</span> <span class="k">ENV</span> <span class="k">LFO</span> <span class="k">EDIT</span></dt>
+      <dd>Open a section. Pressing the same button again goes to its next page, and after its last page you're back on HOME. The lit button is the current section; the others glow.</dd>
+      <dt><span class="k">ARP</span> <span class="k">SEQ</span></dt>
+      <dd>Open the arpeggiator and loop recorder pages, the same way. ARP stays lit while the arp is on; SEQ while the loop plays.</dd>
+      <dt><span class="k">Play</span></dt>
+      <dd>Start or stop the loop.</dd>
+      <dt><span class="k">Rec</span></dt>
+      <dd><b>Tap</b> while stopped to arm (it flashes): your first note starts the loop and recording. <b>Tap</b> while playing to record over the loop, and again to stop recording. <b>Hold 1 s</b> to clear the loop: <span class="v">HOLD TO CLEAR</span> and a red bar fill while you hold, and <span class="v">LOOP CLEARED</span> shows when it's done. Letting go after that does nothing.</dd>
+      <dt><span class="k">Save</span></dt>
+      <dd>Store the loop and the chord, arp and loop settings in flash, loaded each time PRO-FM-78 starts. Stop the loop and let the notes fade first: otherwise it shows <span class="v">STOP THE LOOP FIRST</span> or <span class="v">LET NOTES END</span>, since saving pauses the sound for about 0.1 s.</dd>
+      <dt><span class="k">Home</span></dt>
+      <dd><b>Tap</b> for PRO-FM-78's home screen. <b>Hold 1.5 s</b> to return to the FM-1 host.</dd>
+      <dt><span class="k">Oct −</span> <span class="k">Oct +</span></dt>
+      <dd>Shift the keys ±2 octaves. The top line shows <span class="v">OCT +1</span>, plus <span class="v">ARP</span> and the loop's state: <span class="v">ARMED</span>, <span class="v">REC 2.3</span> or <span class="v">PLAY 1.4</span> (bar.beat). With no shift, the lowest key is F3.</dd>
+      <dt><span class="k">Keys</span></dt>
+      <dd>Play notes at velocity 100, or at the sensed velocity when the key reports one. Key pressure goes to aftertouch.</dd>
+    </dl>
+  </div>
+</section>
+
+<section>
+  <h2>Pages &amp; knobs</h2>
+  <div class="pages">
+  <table>
+    <thead><tr><th scope="col">Button · page</th><th scope="col">Knob 1</th><th scope="col">Knob 2</th><th scope="col">Knob 3</th><th scope="col">Knob 4</th></tr></thead>
+    <tbody>
+      <tr class="home-row"><th scope="row">Home</th>
+        <td><b>Cutoff</b><span>≈41 Hz – 13 kHz</span></td><td><b>Reso</b><span>0–100%</span></td><td><b>LFO</b><span>LFO amount, 0–100%</span></td><td><b>Release</b><span>amp release, 1 ms – 10 s</span></td></tr>
+
+      <tr class="btn-start"><th scope="row">FX · Mixer</th>
+        <td><b>Osc A</b><span>level %</span></td><td><b>Osc B</b><span>level %</span></td><td><b>Noise</b><span>level %</span></td><td><b>Vintage</b><span>analog drift %</span></td></tr>
+
+      <tr class="btn-start"><th scope="row">SEL · Chord</th>
+        <td><b>Chord</b><span>OFF + 14 shapes</span></td><td><b>Invert</b><span>ROOT · 1ST · 2ND · 3RD</span></td><td><b>Voicing</b><span>CLOSE · OPEN · +BASS</span></td><td><b>Strum</b><span>OFF, 10–200 ms</span></td></tr>
+
+      <tr class="btn-start"><th scope="row">ENV · Filter env</th>
+        <td><b>Attack</b><span>1 ms – 10 s</span></td><td><b>Decay</b><span>1 ms – 10 s</span></td><td><b>Sustain</b><span>%</span></td><td><b>Release</b><span>1 ms – 10 s</span></td></tr>
+      <tr><th scope="row">ENV · Amp env</th>
+        <td><b>Attack</b><span>1 ms – 10 s</span></td><td><b>Decay</b><span>1 ms – 10 s</span></td><td><b>Sustain</b><span>%</span></td><td><b>Release</b><span>1 ms – 10 s</span></td></tr>
+
+      <tr class="btn-start"><th scope="row">LFO · LFO</th>
+        <td><b>Rate</b><span>Hz</span></td><td><b>Amount</b><span>initial amount %</span></td><td><b>Noise</b><span>LFO ↔ noise mix for the wheel %</span></td><td><b>Wave</b><span>SAW · TRI · SQUARE, any mix</span></td></tr>
+      <tr><th scope="row">LFO · Poly-Mod</th>
+        <td><b>Fil Env</b><span>source amount %</span></td><td><b>Osc B</b><span>source amount %</span></td><td><b>&gt;Freq A</b><span>ON / OFF</span></td><td><b>&gt;Filter</b><span>ON / OFF</span></td></tr>
+
+      <tr class="btn-start"><th scope="row">EDIT · Filter</th>
+        <td><b>Cutoff</b><span>Hz</span></td><td><b>Reso</b><span>%</span></td><td><b>Env Amt</b><span>%</span></td><td><b>Keybd</b><span>OFF · HALF · FULL</span></td></tr>
+      <tr><th scope="row">EDIT · Oscillators</th>
+        <td><b>Freq A</b><span>−12 … +36 st</span></td><td><b>Freq B</b><span>st, or Hz with keyboard off</span></td><td><b>Fine B</b><span>cents</span></td><td><b>Glide</b><span>ms per octave</span></td></tr>
+      <tr><th scope="row">EDIT · Waveforms</th>
+        <td><b>Osc A</b><span>SAW · PULSE · SAW+PLS</span></td><td><b>Osc B</b><span>SAW · TRI · PULSE, any mix</span></td><td><b>PW A</b><span>3–97%</span></td><td><b>Sync</b><span>ON / OFF</span></td></tr>
+
+      <tr class="btn-start"><th scope="row">ARP · Arpeggiator</th>
+        <td><b>Mode</b><span>OFF · UP · DOWN · UP/DN · RANDOM · PLAYED</span></td><td><b>Rate</b><span>1/4 · 1/8 · 1/8T · 1/16 · 1/16T · 1/32</span></td><td><b>Octaves</b><span>1–4</span></td><td><b>Gate</b><span>10–100%</span></td></tr>
+      <tr><th scope="row">ARP · Options</th>
+        <td><b>Tempo</b><span>60–200 BPM, or EXT + the DAW's tempo</span></td><td><b>Swing</b><span>50–75%, each 1/8's notes in proportion</span></td><td><b>Latch</b><span>OFF / ON</span></td><td><b>Velo</b><span>PLAYED or 1–127</span></td></tr>
+
+      <tr class="btn-start"><th scope="row">SEQ · Loop recorder</th>
+        <td><b>Tempo</b><span>same as ARP's</span></td><td><b>Bars</b><span>1 · 2 · 4 · 8</span></td><td><b>Click</b><span>OFF · REC · ON</span></td><td><b>Transp</b><span>−12 … +12 st</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="muted" style="margin-top:10px">Pages on the same button are listed in the order presses reach them. Cutoff and resonance are on both HOME and EDIT, and Tempo on both ARP and SEQ; each is one setting.</p>
+</section>
+
+<section class="two">
+  <div>
+    <h2>Finding sounds</h2>
+    <p>All 200 factory programs, sorted into types by name. The ALGORITHM knob goes through them in this order:</p>
+    <ul class="types">
+      <li class="first">1978 <em>40</em></li><li>BASS <em>13</em></li><li>LEAD <em>21</em></li><li>POLY <em>21</em></li><li>PAD <em>29</em></li><li>STRINGS <em>8</em></li><li>BRASS <em>9</em></li><li>WIND <em>6</em></li><li>KEYS <em>14</em></li><li>ORGAN <em>11</em></li><li>PLUCK <em>13</em></li><li>BELLS <em>17</em></li><li>PERC <em>8</em></li><li>FX <em>30</em></li><li>INIT <em>1</em></li>
+    </ul>
+    <ul class="plain">
+      <li><b>1978</b> holds the 40 original programs from 1978 (group 5). PRO-FM-78 starts here.</li>
+      <li>The red LEDs read <b>group · bank · program</b>, as on the original panel.</li>
+      <li>The other types draw on all 200 programs, so 1978 sounds appear there too.</li>
+      <li><b>INIT</b> is a plain starting patch for building your own.</li>
+      <li><span class="o">EDITED</span> shows once you've moved a sound control.</li>
+    </ul>
+    <p class="note" style="margin-top:14px">Sound edits aren't saved: changing program or switching module reloads the factory version. SAVE stores only the loop and the chord, arp and loop settings.</p>
+  </div>
+
+  <div>
+    <h2>Chord generator</h2>
+    <p>On the <span class="k">SEL</span> page. Each key or MIDI note plays the whole chord, and releasing it releases the chord, even if you changed the chord while holding. The chord's name shows in orange on the program display. The setting stays when you change program.</p>
+    <h3 style="margin-top:14px">Chords</h3>
+    <div class="chips"><span>MAJOR</span><span>MINOR</span><span>SUS2</span><span>SUS4</span><span>POWER</span><span>OCTAVE</span><span>MAJ7</span><span>MIN7</span><span>DOM7</span><span>ADD9</span><span>MINADD9</span><span>DIM</span><span>AUG</span><span>4THS</span></div>
+    <dl class="ctl" style="margin-top:14px">
+      <dt><b>Invert</b></dt><dd>Moves the lowest notes up an octave, one per step. A step past the chord's size wraps to ROOT (3RD needs a four-note chord).</dd>
+      <dt><b>Voicing</b></dt><dd>CLOSE as played. OPEN lifts the second note an octave. +BASS adds the root an octave below.</dd>
+      <dt><b>Strum</b></dt><dd>Plays the notes one after another, 10 ms apart per step.</dd>
+    </dl>
+  </div>
+</section>
+
+<section class="two">
+  <div>
+    <h2>Arpeggiator</h2>
+    <p>Notes go <b>keys → chord generator → arp → voices</b>, so one key with a chord set gives a chord arpeggio. The first note starts the arp on the beat.</p>
+    <ul class="plain" style="margin-top:10px">
+      <li><b>UP / DOWN / UP/DN</b> go low to high (or back) across the notes held, then up each extra octave. <b>PLAYED</b> keeps the order you pressed them.</li>
+      <li><b>Latch</b> keeps the notes going after you let go. Your next press after letting go of everything starts a new set.</li>
+      <li>The keys light up as the arp plays their notes.</li>
+    </ul>
+  </div>
+  <div>
+    <h2>Loop recorder</h2>
+    <ul class="plain">
+      <li>Records in real time into a loop of 1, 2, 4 or 8 bars. Keys snap to the nearest 1/16.</li>
+      <li>With the arp on, the arp's notes are recorded as they play instead of the keys.</li>
+      <li>Playback goes through the chord generator (for recorded keys) but not the arp. Transp shifts the whole loop.</li>
+      <li>Click: REC clicks while recording, ON whenever the loop plays. PLAY with an empty loop gives you a metronome.</li>
+      <li>The loop and settings stay when you change program, so you can audition sounds over it. Up to 256 notes.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="two">
+  <div>
+    <h2>Playing</h2>
+    <ul class="plain">
+      <li><b>Mod wheel</b> adds LFO modulation on top of the LFO amount. The LFO page's <i>Noise</i> knob mixes in noise.</li>
+      <li><b>Aftertouch</b> adds LFO depth and/or opens the filter, if the program has pressure enabled.</li>
+      <li><b>Pitch bend</b> range is set by each program, 1–12 semitones.</li>
+      <li><b>Voices:</b> 8 when both cores are running, 5 on one core. Unison programs stack every voice on one note.</li>
+    </ul>
+  </div>
+  <div>
+    <h2>MIDI in</h2>
+    <dl class="midi">
+      <dt>Notes</dt><dd>Played through the chord generator, the same as the keys.</dd>
+      <dt>CC 1</dt><dd>Mod wheel</dd>
+      <dt>CC 74</dt><dd>Cutoff</dd>
+      <dt>CC 71</dt><dd>Resonance</dd>
+      <dt>CC 73</dt><dd>Amp attack</dd>
+      <dt>CC 72</dt><dd>Amp release</dd>
+      <dt>CC 120 / 123</dt><dd>All notes off. Your DAW sends this when it starts or stops. Notes stop, and the program and your edits stay.</dd>
+      <dt>Aftertouch, bend</dt><dd>Channel pressure and pitch bend</dd>
+      <dt>Clock (USB)</dt><dd>Sets the tempo (TEMPO shows EXT). Start plays the loop from the top, Continue resumes it, Stop stops it. Clock over the DIN jack is ignored.</dd>
+    </dl>
+  </div>
+</section>
+
+</div>
+</div>
