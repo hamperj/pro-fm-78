@@ -14,6 +14,7 @@ A vintage polysynth for the FM-1, with a chord generator, an arpeggiator and a l
 - **Sync:** the arp and the loop follow a DAW's MIDI clock, and its start and stop.
 
 It runs as its own firmware, or as a module inside [fm1-dock](https://github.com/joakimeriksson/fm1-dock).
+Both the firmware and the module have been tested on a real FM-1, including one with the newer UC25HQ80 flash.
 
 ## Install
 
