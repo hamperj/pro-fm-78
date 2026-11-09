@@ -1,0 +1,13 @@
+diff --git a/firmware/hal/fm1_flash.h b/firmware/hal/fm1_flash.h
+index 72aa1db..4dcdb7d 100644
+--- a/firmware/hal/fm1_flash.h
++++ b/firmware/hal/fm1_flash.h
+@@ -44,7 +44,7 @@ static inline void *fl_far(void *p) { void *volatile q = p; return q; }
+ #define FL_GUARD(off, n) (FL_RANGE_OK(off, n) && !FL_PROTECTED(off, n))
+ #else
+ #define FL_PLAIN_LO     0x00093000u                /* the plain XIP window: from the FM-1's VM */
+-#define FL_JEDEC_OK(id) ((id) == 0x856014u)
++#define FL_JEDEC_OK(id) ((id) == 0x856014u || (id) == 0xB36014u)   /* + UC25HQ80, newer FM-1s (Felucca f4cbb6a) */
+ #define FL_DATA_LO      0x00097000u                /* Felucca main store */
+ #define FL_DATA_HI      0x000E0000u
+ #define FL_GLOB_LO      0x000FC000u                /* Felucca superblock / globals */
